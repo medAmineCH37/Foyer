@@ -88,13 +88,22 @@ pipeline {
         always {
             junit '**/target/surefire-reports/*.xml'
         }
+
         success {
-            publishHTML(target: [
-                reportDir: 'target/site/jacoco',
-                reportFiles: 'index.html',
-                reportName: 'JaCoCo Coverage'
-            ])
+            script {
+                def jacocoReport = fileExists('target/site/jacoco/index.html')
+                if (jacocoReport) {
+                    publishHTML(target: [
+                        reportDir: 'target/site/jacoco',
+                        reportFiles: 'index.html',
+                        reportName: 'JaCoCo Coverage'
+                    ])
+                } else {
+                    echo 'JaCoCo HTML report not found — skipping report publish.'
+                }
+            }
         }
+
         failure {
             echo 'Build failed.'
         }

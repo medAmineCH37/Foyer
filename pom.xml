@@ -108,11 +108,14 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.10</version>
                 <executions>
+                    <!-- Attach JaCoCo agent to tests -->
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+                    <!-- Generate HTML report after tests -->
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
@@ -120,6 +123,7 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+                    <!-- Enforce minimum coverage -->
                     <execution>
                         <id>check</id>
                         <goals>
@@ -133,7 +137,7 @@
                                         <limit>
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.50</minimum> <!-- 50% coverage -->
+                                            <minimum>0.50</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
