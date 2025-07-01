@@ -29,9 +29,9 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Test + Coverage Check') {
             steps {
-                sh 'mvn test'
+                sh 'mvn verify'
             }
         }
 
@@ -85,8 +85,15 @@ pipeline {
     }
 
     post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
+        }
         success {
-            echo 'Build succeeded.'
+            publishHTML(target: [
+                reportDir: 'target/site/jacoco',
+                reportFiles: 'index.html',
+                reportName: 'JaCoCo Coverage'
+            ])
         }
         failure {
             echo 'Build failed.'
