@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class SpringDocConfig {
 
     @Bean
-    public OpenAPI springShopOpenAPI() {
+    public OpenAPI springShopOpenAPI()  {
         return new OpenAPI()
                 .info(infoAPI());
     }
