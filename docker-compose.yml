@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  app:
+    image: medaminech/foyer:1.4.0
+    depends_on:
+      - db
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/foyerdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    restart: unless-stopped
+
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: foyerdb
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/data
+    ports:
+      - "9090:9090"
+    depends_on:
+      - app
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+volumes:
+  mysql-data:
+  grafana-data:
+  prometheus-data:
