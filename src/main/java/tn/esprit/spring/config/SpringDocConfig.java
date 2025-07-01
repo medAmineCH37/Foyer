@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Configuration;
 public class SpringDocConfig {
 
     @Bean
-    public OpenAPI springShopOpenAPI()  {
+    public OpenAPI springShopOpenAPI() {
         return new OpenAPI()
                 .info(infoAPI());
     }
 
-    public Info infoAPI() {
+    public Info infoAPI()  {
         return new Info().title("Gestion d'un foyer")
                 .description("TP étude de cas 2023-2024")
                 .contact(contactAPI());
