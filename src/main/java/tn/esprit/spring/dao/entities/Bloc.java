@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Bloc{
+public class Bloc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long idBloc;
