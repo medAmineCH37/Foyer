@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @Slf4j
-public class FoyerAspect4SE1 { // La classe : Aspect
+public class FoyerAspect4SE1 {  // La classe : Aspect
 
     // @After() ==> Après l'exécution
     // @AfterThrowing() ==> Après le déclenchement d'une exception
