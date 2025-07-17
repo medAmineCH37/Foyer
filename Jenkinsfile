@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         GIT_CREDENTIALS_ID = 'github-token'
-        GIT_REPO_URL = 'https://github.com/baha-es/Groupe1-2ALINFO5-2425.git'
-        GIT_BRANCH = 'Mohamed-Amine-Chouria-Universite'
+        GIT_REPO_URL = 'https://github.com/medAmineCH37/Foyer.git'
+        GIT_BRANCH = 'main'
         SONARQUBE_SERVER = 'SonarQube-Server'
     }
 
