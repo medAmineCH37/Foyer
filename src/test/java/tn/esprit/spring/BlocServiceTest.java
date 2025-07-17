@@ -30,7 +30,6 @@ import static org.mockito.Mockito.*;
 @ExtendWith(SpringExtension.class)
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@SpringBootTest
 @ActiveProfiles("test")
 class BlocServiceTest {
 
