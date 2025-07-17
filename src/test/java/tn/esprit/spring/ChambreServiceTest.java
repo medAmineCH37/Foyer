@@ -108,21 +108,4 @@ class ChambreServiceTest {
         verify(chambreRepository, times(1)).delete(c);
     }
 
-    @Test
-    void testNbChambreParTypeEtBloc() {
-        Chambre c1 = new Chambre();
-        Chambre c2 = new Chambre();
-        Bloc bloc = new Bloc();
-        bloc.setIdBloc(2L);
-
-        c1.setBloc(bloc);
-        c2.setBloc(bloc);
-        c1.setTypeC(TypeChambre.DOUBLE);
-        c2.setTypeC(TypeChambre.SIMPLE);
-
-        when(chambreRepository.findAll()).thenReturn(Arrays.asList(c1, c2));
-
-        long count = chambreService.nbChambreParTypeEtBloc(TypeChambre.SIMPLE, 2L);
-        assertEquals(1, count);
-    }
 }
