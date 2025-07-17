@@ -43,9 +43,9 @@ services:
     environment:
       - GF_SMTP_ENABLED=true
       - GF_SMTP_HOST=smtp.gmail.com:587
-      - GF_SMTP_USER=medamine.chouria@gmail.com
+      - GF_SMTP_USER=aminouchouristou@gmail.com
       - GF_SMTP_PASSWORD=voqy hbtm wrnu pgcr
-      - GF_SMTP_FROM_ADDRESS=medamine.chouria@gmail.com
+      - GF_SMTP_FROM_ADDRESS=aminouchouristou@gmail.com
       - GF_SMTP_SKIP_VERIFY=true
     depends_on:
       - prometheus
