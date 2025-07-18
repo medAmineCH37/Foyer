@@ -102,11 +102,37 @@ pipeline {
                 } else {
                     echo 'JaCoCo HTML report not found — skipping report publish.'
                 }
+                // Email Notification - Success
+                emailext subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                         body: """
+                             <p>The build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> completed <b>SUCCESSFULLY</b>.</p>
+                             <p><a href="${env.BUILD_URL}">Click here to view the build</a></p>
+                         """,
+                         to: 'aminouchouristou@gmail.com',
+                         mimeType: 'text/html'
+
+                // Slack Notification - Success (optional)
+                slackSend channel: '#ci-cd',
+                          color: 'good',
+                          message: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${env.BUILD_URL}"
             }
         }
 
         failure {
             echo 'Build failed.'
+            //  Email Notification - Failure
+                        emailext subject: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                                 body: """
+                                     <p>The build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> <b>FAILED</b>.</p>
+                                     <p><a href="${env.BUILD_URL}">Click here to view the build</a></p>
+                                 """,
+                                 to: 'aminouchouristou@gmail.com',
+                                 mimeType: 'text/html'
+
+                        // Slack Notification - Failure (optional)
+                        slackSend channel: '#ci-cd',
+                                  color: 'danger',
+                                  message: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${env.BUILD_URL}"
         }
     }
 }
