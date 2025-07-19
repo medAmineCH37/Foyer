@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("bloc")
 @AllArgsConstructor
-public class BlocRestController {
+public class BlocRestController  {
     IBlocService service;
 
     @PostMapping("addOrUpdate")
